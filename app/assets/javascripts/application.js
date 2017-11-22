@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require fullcalendar
+//= require moment
 //= require semantic
 //= require jquery
 //= require jquery_ujs
