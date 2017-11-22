@@ -1,25 +1,19 @@
-<p id="notice"><%= notice %></p>
+<%= form_tag create_item_todolists_path do %>
 
-<h1>Todolists</h1>
+<input type="text" name="todoitem[name]">
+<button>submit</button>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% end %>
+<div class="ui middle aligned divided list">
+  <% @todoitems.each do |item| %>
+    <div class="item">
+      <div class="content">
+        <%= link_to toggle_todoitems_path(id: item.id) do %>
+          <div class="header"><i class="<%= if item.is_done; "checkmark box"; else "square outline"; end  %> icon"></i><%= item.name %></div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-  <tbody>
-    <% @todolists.each do |todolist| %>
-      <tr>
-        <td><%= link_to 'Show', todolist %></td>
-        <td><%= link_to 'Edit', edit_todolist_path(todolist) %></td>
-        <td><%= link_to 'Destroy', todolist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Todolist', new_todolist_path %>
+<div id='calendar'></div>

@@ -1,5 +1,5 @@
 class TodoitemsController < ApplicationController
-  before_action :set_todoitem, only: [:show, :edit, :update, :destroy]
+  before_action :set_todoitem, only: [:show, :edit, :update, :destroy, :toggle_status]
 
   # GET /todoitems
   # GET /todoitems.json
@@ -35,6 +35,11 @@ class TodoitemsController < ApplicationController
         format.json { render json: @todoitem.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def toggle_status
+    @todoitem.toggle! :is_done #exclamation point
+    redirect_to root_path
   end
 
   # PATCH/PUT /todoitems/1

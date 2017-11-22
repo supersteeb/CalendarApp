@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122133327) do
+ActiveRecord::Schema.define(version: 20171122143342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,10 +44,10 @@ ActiveRecord::Schema.define(version: 20171122133327) do
   create_table "todoitems", force: :cascade do |t|
     t.integer  "todolist_id"
     t.string   "name"
-    t.boolean  "is_done"
+    t.boolean  "is_done",     default: false
     t.text     "desc"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["todolist_id"], name: "index_todoitems_on_todolist_id", using: :btree
   end
 

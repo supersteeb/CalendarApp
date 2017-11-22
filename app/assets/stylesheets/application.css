@@ -12,7 +12,6 @@
  *
  *= require jquery-ui/datepicker
  *= require semantic
- *= require fullcalendar
- *= require_tree .
- *= require_self
+ *= require fullcalendar.min
+ *= require main
  */
