@@ -7,6 +7,7 @@ end
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-semantic'
+  gem 'rails-assets-fullcalendar'
 end
   
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

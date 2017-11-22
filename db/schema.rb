@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171122114608) do
+ActiveRecord::Schema.define(version: 20171122125451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,4 +25,21 @@ ActiveRecord::Schema.define(version: 20171122114608) do
     t.index ["published_on"], name: "index_articles_on_published_on", using: :btree
   end
 
+  create_table "to_do_items", force: :cascade do |t|
+    t.integer  "to_do_lists_id"
+    t.string   "name"
+    t.boolean  "is_done"
+    t.text     "desc"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["to_do_lists_id"], name: "index_to_do_items_on_to_do_lists_id", using: :btree
+  end
+
+  create_table "to_do_lists", force: :cascade do |t|
+    t.integer  "percent_complete"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_foreign_key "to_do_items", "to_do_lists", column: "to_do_lists_id"
 end
