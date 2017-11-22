@@ -1,10 +1,11 @@
 class TodolistsController < ApplicationController
   before_action :set_todolist, only: [:show, :edit, :update, :destroy]
+  before_action :set_default_todolist, only: [:index]
 
   # GET /todolists
   # GET /todolists.json
   def index
-    @todolists = Todolist.all
+    
   end
 
   # GET /todolists/1
@@ -65,6 +66,10 @@ class TodolistsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_todolist
       @todolist = Todolist.find(params[:id])
+    end
+
+    def set_default_todolist
+      @todolist = Todolist.create if Todolist.today.empty? || Todolist.today.take
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
