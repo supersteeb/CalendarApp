@@ -4,3 +4,16 @@
 <button>submit</button>
 
 <% end %>
+<div class="ui middle aligned divided list">
+  <% @todoitems.each do |item| %>
+    <div class="item">
+      <div class="content">
+        <%= link_to toggle_todoitems_path(id: item.id) do %>
+          <div class="header"><i class="<%= if item.is_done; "checkmark box"; else "square outline"; end  %> icon"></i><%= item.name %></div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div id='calendar'></div>

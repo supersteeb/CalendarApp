@@ -38,7 +38,8 @@ class TodoitemsController < ApplicationController
   end
 
   def toggle_status
-    @todoitem.toggle! :is_done
+    @todoitem.toggle! :is_done #exclamation point
+    redirect_to root_path
   end
 
   # PATCH/PUT /todoitems/1

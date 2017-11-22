@@ -5,7 +5,7 @@ class TodolistsController < ApplicationController
   # GET /todolists
   # GET /todolists.json
   def index
-    @todoitems = @todolist.todoitems
+    @todoitems = @todolist.todoitems.order(:created_at)
   end
 
   # GET /todolists/1
