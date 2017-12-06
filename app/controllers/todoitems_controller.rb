@@ -39,7 +39,19 @@ class TodoitemsController < ApplicationController
 
   def toggle_status
     @todoitem.toggle! :is_done #exclamation point
-    redirect_to root_path
+    update_list_completion 
+    respond_to do |format|
+        format.html { redirect_to root_path }
+        format.js { render template: 'todoitems/edit_item.js.erb' }
+    end
+  end
+
+  def update_list_completion
+    list = @todoitem.todolist
+    all_items = list.todoitems.count
+    completed_items = list.todoitems.done.count
+    percent_complete = (completed_items.to_f / all_items.to_f)*100
+    list.update percent: percent_complete 
   end
 
   # PATCH/PUT /todoitems/1
@@ -47,8 +59,7 @@ class TodoitemsController < ApplicationController
   def update
     respond_to do |format|
       if @todoitem.update(todoitem_params)
-        format.html { redirect_to @todoitem, notice: 'Todoitem was successfully updated.' }
-        format.json { render :show, status: :ok, location: @todoitem }
+        format.html {redirect_back(fallback_location: root_path)}
       else
         format.html { render :edit }
         format.json { render json: @todoitem.errors, status: :unprocessable_entity }
@@ -74,6 +85,6 @@ class TodoitemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todoitem_params
-      params.fetch(:todoitem, {})
+      params.require(:todoitem).permit(:desc, :result, :is_done)
     end
 end

@@ -1,19 +1,26 @@
-<%= form_tag create_item_todolists_path do %>
-
-<input type="text" name="todoitem[name]">
-<button>submit</button>
-
-<% end %>
-<div class="ui middle aligned divided list">
-  <% @todoitems.each do |item| %>
-    <div class="item">
-      <div class="content">
-        <%= link_to toggle_todoitems_path(id: item.id) do %>
-          <div class="header"><i class="<%= if item.is_done; "checkmark box"; else "square outline"; end  %> icon"></i><%= item.name %></div>
-        <% end %>
-      </div>
-    </div>
-  <% end %>
+<div class="ui grid" id="main_container" data-events="<%= JSON.generate @events %>">
+	<div class="six wide column">
+		<!-- ToDo List  -->
+		<div class="ui segment">
+			<%= render 'create_item_form' %>
+			<%= render 'item_list' %>
+		</div>
+	</div>
+	<div class="ten wide column">
+		<!-- Calender  -->
+		<div class="ui segment">
+			<div id='calendar'></div>
+		</div>
+	</div>
 </div>
 
-<div id='calendar'></div>
+
+<div class="ui small modal" id="item_detail">
+  <i class="close icon"></i>
+  <div class="header" id="item_name">
+  </div>
+  <div class="image content">
+    <div class="description">
+    </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 class TodolistsController < ApplicationController
   before_action :set_todolist, only: [:show, :edit, :update, :destroy]
   before_action :set_default_todolist, only: [:index, :create_todoitem]
+  before_action :get_completed_lists, only: [:index]
 
   # GET /todolists
   # GET /todolists.json
@@ -47,6 +48,7 @@ class TodolistsController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /todolists/1
   # PATCH/PUT /todolists/1.json
   def update
@@ -78,7 +80,7 @@ class TodolistsController < ApplicationController
     end
 
     def set_default_todolist
-      @todolist = Todolist.today.take || Todolist.create
+      @todolist = Todolist.today.first || Todolist.create
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -88,5 +90,17 @@ class TodolistsController < ApplicationController
 
     def params_todoitem
       params.require(:todoitem).permit(:name)
+    end
+
+
+    def get_completed_lists
+      @completed_lists = Todolist.where(percent: 100)
+      @events = []
+      @completed_lists.each do |list|
+        @events << {
+          name: list.id,
+          start: list.created_at.in_time_zone('Asia/Bangkok')
+        }
+      end
     end
 end

@@ -1,0 +1,14 @@
+<div class="ui middle aligned divided list">
+  <% @todoitems.each do |item| %>
+    <div class="item">
+      <div class="content">
+	      <div class="header">	      	
+      		<i class="<%= if item.is_done; "checkmark box"; else "square outline"; end  %> icon"></i>
+	      	<%= link_to todoitem_path(id: item.id), remote: true, method: :get do %>
+	      		<%= item.name %>
+	      	<% end %>
+	      </div>
+      </div>
+    </div>
+  <% end %>
+</div>
