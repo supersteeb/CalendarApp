@@ -1,0 +1,20 @@
+<p>
+	 <%= @todoitem.desc %>
+</p>
+<% if @todoitem.is_done %>
+	<div class="ui segment">
+		<p>
+			<%= @todoitem.result %>
+		</p>
+	</div>
+	<%= link_to toggle_todoitems_path(id: @todoitem.id), remote: true, method: :get do %>
+		<button class="ui icon primary button">
+	  		<i class="edit icon"></i>
+	  		Edit
+		</button>
+	<% end %>
+<% else %>
+	<div class="result">
+		<%= render 'todoitems/result_form' %>
+	</div>
+<% end %>

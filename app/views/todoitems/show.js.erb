@@ -1,0 +1,3 @@
+$('#item_detail #item_name').text("<%= @todoitem.name %>");
+$('#item_detail .description').html("<%= j render(partial: 'todoitems/item_detail') %>");
+$('#item_detail').modal('show');

@@ -13,5 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui/widgets/datepicker
+//= require moment.min
+//= require fullcalendar.min
 //= require turbolinks
-//= require_tree .
+//= require semantic
+//= require main

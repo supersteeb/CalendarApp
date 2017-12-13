@@ -1,0 +1,15 @@
+<%= form_for(defaultitem = Defaultitem.new, html: {class:'ui form'}) do |f| %>
+	<div class="field">
+		<%= f.text_field :name, placeholder: "Name" %>
+	</div>
+	<div class="field">
+		<%= f.text_area :desc, placeholder: 'Desc' %>
+	</div>
+  <div class="ui grid">
+  	<div class="sixteen wide column">
+  		<button type="submit" class="ui green right floated button">
+	  		Create
+	  	</button>
+  	</div>
+  </div>
+<% end %>

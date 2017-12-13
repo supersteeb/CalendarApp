@@ -1,0 +1,33 @@
+<%= form_for(todolist) do |f| %>
+  <% if todolist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(todolist.errors.count, "error") %> prohibited this todolist from being saved:</h2>
+
+      <ul>
+      <% todolist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+  <div class="ui checkbox">
+    <input type="checkbox" name="example">
+    <label>Make my profile visible</label>
+  </div>
+
+<div class="ui middle aligned divided list">
+  <div class="item">
+    <div class="ui checkbox">
+      <input type="checkbox">
+    </div>
+    <div class="content">
+      <a class="header">Item one</a>
+    </div>
+  </div>
+</div>
+<% end %>

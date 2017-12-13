@@ -1,0 +1,29 @@
+<div class="ui grid" id="main_container" data-events="<%= JSON.generate @events %>">
+	<div class="six wide column">
+		<!-- ToDo List  -->
+		<div class="ui segment">
+			<h4 class="ui header">
+				To Do List
+			</h4>
+			<div class="ui divider"></div>
+			<%= render 'item_list' %>
+		</div>
+	</div>
+	<div class="ten wide column">
+		<!-- Calender  -->
+		<div class="ui segment">
+			<div id='calendar'></div>
+		</div>
+	</div>
+</div>
+
+
+<div class="ui small modal" id="item_detail">
+  <i class="close icon"></i>
+  <div class="header" id="item_name">
+  </div>
+  <div class="image content">
+    <div class="description">
+    </div>
+  </div>
+</div>
