@@ -1,0 +1,2 @@
+class Defaultitem < ApplicationRecord
+end

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  get 'admins/index'
+
 	root 'todolists#index'
 	resources :todolists do
 		collection do
