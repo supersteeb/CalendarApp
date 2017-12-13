@@ -1,6 +1,8 @@
 class HomesController < ApplicationController
-	before_action :get_completed_lists
+	before_action :get_completed_lists, :set_default_todolist
+
   def index
+  	@todoitems = @todolist.todoitems.order(:created_at)
   end
 
   private
@@ -15,4 +17,8 @@ class HomesController < ApplicationController
       }
     end
   end
+
+  def set_default_todolist
+      @todolist = Todolist.today.first || Todolist.create
+    end
 end

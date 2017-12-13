@@ -1,7 +1,7 @@
 .fc-event, .fc-event-dot {
 	background-color: transparent;
   padding: 30px 20px !important;
-  margin-top: -60px !important;
+  margin-top: -55px !important;
   background: url('<%= asset_path 'cross-sign.svg' %>');
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -23,5 +23,22 @@
 #main_container {
 	.pointing.menu {
     margin-top: 50px;
+  }
+  #todolist {
+    margin-top: 50px;
+    .item {
+      padding: 1em 0;
+      a {
+        font-weight: 500;
+      }
+      .genderless.icon {
+        &:before {
+          margin-left: 2px;
+        }
+      }
+      .icon {
+        margin-right: 10px;
+      }
+    }
   }
 }
