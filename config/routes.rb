@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-	root 'todolists#index'
+
+	root 'homes#index'
 
 	resources :todolists do
 		collection do

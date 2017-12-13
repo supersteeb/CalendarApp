@@ -1,15 +1,44 @@
 .fc-event, .fc-event-dot {
 	background-color: transparent;
-    padding: 24px 20px !important;
-    margin-top: -24px !important;
-    background: url(https://image.flaticon.com/icons/svg/390/390914.svg);
-    background-repeat: no-repeat;
-    background-position: 50% 50%;
-    font-size: 0;
-    border: none;
-    background-size: 45%;
-    transform: translateY(33%);
+  padding: 30px 20px !important;
+  margin-top: -55px !important;
+  background: url('<%= asset_path 'cross-sign.svg' %>');
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  font-size: 0;
+  border: none;
+  background-size: 30%;
+  transform: translateY(50%);
+}
+.fc-unthemed td.fc-today {
+  background: transparent;
+}
+.fc-head-container .fc-widget-header {
+  padding: 5px 0;
+}
+.fc-basic-view .fc-day-number, .fc-basic-view .fc-week-number {
+  padding: 10px;
+  font-size: 1.25em;
 }
 #main_container {
-	padding-top: 50px;
+	.pointing.menu {
+    margin-top: 50px;
+  }
+  #todolist {
+    margin-top: 50px;
+    .item {
+      padding: 1em 0;
+      a {
+        font-weight: 500;
+      }
+      .genderless.icon {
+        &:before {
+          margin-left: 2px;
+        }
+      }
+      .icon {
+        margin-right: 10px;
+      }
+    }
+  }
 }

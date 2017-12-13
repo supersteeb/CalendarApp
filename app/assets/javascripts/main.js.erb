@@ -2,17 +2,19 @@ jQuery(document).on('page:change turbolinks:load', function() {
 
   $('#calendar').fullCalendar({
   		timezone: 'UTC',
+  		height: 600,
   		header: {
-			left:   'title',
-			center: '',
-			right:  'prev,next'
+				left:   'title',
+				center: '',
+				right:  'prev,next'
   		}
-      });
+   });
 
-  	$events =  $("#main_container").data('events')
-	$('#calendar').fullCalendar('renderEvents', $events)
+	$events =  $("#main_container").data('events');
+	$('#calendar').fullCalendar('renderEvents', $events);
 	$('.ui.modal .close.icon').click(function(){
 		$(this).parent('.ui.modal').modal('hide');
-	})
+	});
+
 });
 

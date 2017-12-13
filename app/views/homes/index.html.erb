@@ -1,0 +1,9 @@
+<div id="main_container" data-events="<%= JSON.generate @events %>">
+	<div class="ui grid">
+		<% if current_user %>
+			<%= render 'homes/current_user_view' %>
+		<% else %>
+			<%= render 'homes/visitor_view' %>
+		<% end %>
+	</div>
+</div>
