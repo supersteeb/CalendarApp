@@ -99,7 +99,7 @@ class TodolistsController < ApplicationController
       @completed_lists.each do |list|
         @events << {
           name: list.id,
-          start: list.created_at.in_time_zone('Asia/Bangkok')
+          start: list.created_at
         }
       end
     end

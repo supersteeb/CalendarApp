@@ -39,7 +39,7 @@ class TodoitemsController < ApplicationController
 
   def toggle_status
     @todoitem.toggle! :is_done #exclamation point
-    update_list_completion 
+    update_list_completion
     respond_to do |format|
         format.html { redirect_to root_path }
         format.js { render template: 'todoitems/edit_item.js.erb' }
@@ -48,23 +48,21 @@ class TodoitemsController < ApplicationController
 
   def update_list_completion
     list = @todoitem.todolist
+    puts "\n\n\n List_ID: #{list.id} \n\n\n"
     all_items = list.todoitems.count
+    puts "\n\n\n All item: #{all_items} \n\n\n"
     completed_items = list.todoitems.done.count
+    puts "\n\n\n Completed item: #{completed_items} \n\n\n"
     percent_complete = (completed_items.to_f / all_items.to_f)*100
-    list.update percent: percent_complete 
+    list.update percent: percent_complete.to_i
   end
 
   # PATCH/PUT /todoitems/1
   # PATCH/PUT /todoitems/1.json
   def update
-    respond_to do |format|
-      if @todoitem.update(todoitem_params)
-        format.html {redirect_back(fallback_location: root_path)}
-      else
-        format.html { render :edit }
-        format.json { render json: @todoitem.errors, status: :unprocessable_entity }
-      end
-    end
+    @todoitem.update(todoitem_params)
+    update_list_completion
+    redirect_back(fallback_location: root_path)
   end
 
   # DELETE /todoitems/1
