@@ -1,0 +1,25 @@
+<table class="ui table">
+  <thead>
+  	<th>ID</th>
+    <th>Name</th>
+    <th>Desc</th>
+    <th class="four wide">Action</th>
+  </thead>
+
+  <tbody>
+    <% @defaultitems.each do |item| %>
+      <tr>
+        <td><%= item.id %></td>
+        <td><%= item.name %></td>
+        <td><%= item.desc %></td>
+        <td class="four wide">
+          <%= link_to toggle_defaultitems_path(item) do %>
+            <button class="ui fluid <%= item.active? ? 'green' : "orange" %> tiny button">
+              <%= item.active? ? 'Deactivate' : "Activate" %>
+            </button>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
