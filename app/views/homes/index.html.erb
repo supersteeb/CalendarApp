@@ -5,22 +5,26 @@
 	    Calendaroo
 	  </div>
 	  <% if current_user %>
-	  	<a class="item">
+	  	<a href="/admins" class="item">
 	    	Settings
 	  	</a>
 	  <% end %>
 	  <div class="right menu">
 	  	<div class="item">
 	  		<% if current_user %>
-		    	<button class="ui basic button">
-		    		<i class="power icon"></i>
-		    		Log Out
-		    	</button>
+		    	<%= link_to destroy_user_session_path, method: 'delete' do %>
+		      	<button class="ui basic button">
+		      		<i class="power icon"></i>
+		      		Log Out
+		      	</button>
+		      <% end %>
 			  <% else %>
-			  	<button class="ui basic button">
-		    		<i class="power icon"></i>
-		    		Sign in
-		    	</button>
+			  	<%= link_to new_user_session_path do %>
+			  		<button class="ui basic button">
+			    		<i class="power icon"></i>
+			    		Sign in
+			    	</button>
+			    <% end %>
 		  	<% end %>
 	  	</div>
 	  </div>

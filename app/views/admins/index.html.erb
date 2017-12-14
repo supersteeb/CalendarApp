@@ -1,23 +1,25 @@
 <div class="ui pointing borderless menu" style="margin-bottom: 30px">
-  <div class="header item">
-  	<%= image_tag 'calendaroo.svg', class: 'logo' %>
-    Calendaroo
-  </div>
-  <a class="active item">
+  <%= link_to root_path, class:'header item' do %>
+    	<%= image_tag 'calendaroo.svg', class: 'logo' %>
+      Calendaroo
+  <% end %>
+  <a href="#" class="active item">
     Settings
   </a>
   <div class="right menu">
   	<div class="item">
-    	<button class="ui basic button">
-    		<i class="power icon"></i>
-    		Log Out
-    	</button>
+      <%= link_to destroy_user_session_path, method: 'delete' do %>
+      	<button class="ui basic button">
+      		<i class="power icon"></i>
+      		Log Out
+      	</button>
+      <% end %>
   	</div>
   </div>
 </div>
 <div class="ui grid">
 	<div class="five wide column">
-		<div class="ui teal inverted segment">
+		<div class="ui segment">
 			<h3 class="ui header">Create default item</h3>
 			<div class="ui divider"></div>
 			<%= render 'defaultitems/inline_form' %>
