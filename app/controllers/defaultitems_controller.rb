@@ -66,6 +66,6 @@ class DefaultitemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def defaultitem_params
-      params.require(:defaultitem).permit(:name, :desc)
+      params.require(:defaultitem).permit(:name, :desc, frequency:[])
     end
 end

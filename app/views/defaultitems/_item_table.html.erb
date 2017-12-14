@@ -1,20 +1,34 @@
-<table class="ui table">
+<table class="ui very basic table">
   <thead>
-  	<th>ID</th>
+  	<th class="center aligned one wide">ID</th>
     <th>Name</th>
     <th>Desc</th>
-    <th class="four wide">Action</th>
+    <th>Frequency</th>
+    <th class="two wide">Action</th>
   </thead>
 
   <tbody>
     <% @defaultitems.each do |item| %>
       <tr>
-        <td><%= item.id %></td>
+        <td class="center aligned"><%= item.id %></td>
         <td><%= item.name %></td>
         <td><%= item.desc %></td>
-        <td class="four wide">
+        <td>
+          <% if item.frequency.count == 7 %>
+            <span class="ui mini grey label">
+              DAILY
+            </span>
+          <% else %>
+            <% item.frequency.each do |date| %>
+              <span class="ui mini label">
+                <%= date[0..2].upcase %>
+              </span>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
           <%= link_to toggle_defaultitems_path(item) do %>
-            <button class="ui fluid <%= item.active? ? 'green' : "orange" %> tiny button">
+            <button class="ui fluid <%= item.active? ? 'green' : "orange" %> mini button">
               <%= item.active? ? 'Deactivate' : "Activate" %>
             </button>
           <% end %>
