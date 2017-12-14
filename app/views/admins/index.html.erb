@@ -1,13 +1,31 @@
-<h2 class="ui header">Default Item</h2>
-<div class="ui divider"></div>
+<div class="ui pointing borderless menu" style="margin-bottom: 30px">
+  <div class="header item">
+  	<%= image_tag 'calendaroo.svg', class: 'logo' %>
+    Calendaroo
+  </div>
+  <a class="active item">
+    Settings
+  </a>
+  <div class="right menu">
+  	<div class="item">
+    	<button class="ui basic button">
+    		<i class="power icon"></i>
+    		Log Out
+    	</button>
+  	</div>
+  </div>
+</div>
 <div class="ui grid">
 	<div class="five wide column">
-		<div class="ui segment">
-			<h4 class="ui header">Create new item</h4>
+		<div class="ui teal inverted segment">
+			<h3 class="ui header">Create default item</h3>
+			<div class="ui divider"></div>
 			<%= render 'defaultitems/inline_form' %>
 		</div>
 	</div>
 	<div class="eleven wide column">
-		<%= render 'defaultitems/item_table' %>
+		<div class="ui segment">
+			<%= render 'defaultitems/item_table' %>
+		</div>
 	</div>
 </div>

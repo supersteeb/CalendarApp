@@ -5,7 +5,9 @@ class Todolist < ApplicationRecord
 
 	def add_default_todoitem
 		Defaultitem.active.each do |item|
-			self.todoitems.create(name: item.name, desc: item.desc)
+			if item.frequency.include? Time.current.strftime('%A').downcase
+				self.todoitems.create(name: item.name, desc: item.desc)
+			end
 		end
 	end
 end

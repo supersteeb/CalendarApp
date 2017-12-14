@@ -1,4 +1,30 @@
 <div id="main_container" data-events="<%= JSON.generate @events %>">
+	<div class="ui borderless menu">
+	  <div class="header item">
+	  	<%= image_tag 'calendaroo.svg', class: 'logo' %>
+	    Calendaroo
+	  </div>
+	  <% if current_user %>
+	  	<a class="item">
+	    	Settings
+	  	</a>
+	  <% end %>
+	  <div class="right menu">
+	  	<div class="item">
+	  		<% if current_user %>
+		    	<button class="ui basic button">
+		    		<i class="power icon"></i>
+		    		Log Out
+		    	</button>
+			  <% else %>
+			  	<button class="ui basic button">
+		    		<i class="power icon"></i>
+		    		Sign in
+		    	</button>
+		  	<% end %>
+	  	</div>
+	  </div>
+	</div>
 	<div class="ui grid">
 		<% if current_user %>
 			<%= render 'homes/current_user_view' %>
