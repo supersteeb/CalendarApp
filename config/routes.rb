@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 	resources :todolists do
 		collection do
 			post 'create_item', to: 'todolists#create_todoitem'
+			get 'detail/:id', to: 'todolists#detail', as: 'detail'
 		end
 	end
 

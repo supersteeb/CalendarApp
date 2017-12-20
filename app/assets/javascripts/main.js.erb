@@ -1,20 +1,51 @@
 jQuery(document).on('page:change turbolinks:load', function() {
 
-  $('#calendar').fullCalendar({
+	initSemanticElement();
+	initCalendar();
+
+});
+
+function initSemanticElement() {
+	$('.ui.modal .close.icon').click(function(){
+		$(this).parent('.ui.modal').modal('hide');
+	});
+}
+
+function initCalendar() {
+	$('#calendar').fullCalendar({
   		timezone: 'UTC',
   		height: 600,
   		header: {
 				left:   'title',
 				center: '',
 				right:  'prev,next'
+  		},
+  		eventClick: function(e){
+  			getDateList(e.name);
   		}
    });
 
 	$events =  $("#main_container").data('events');
 	$('#calendar').fullCalendar('renderEvents', $events);
-	$('.ui.modal .close.icon').click(function(){
-		$(this).parent('.ui.modal').modal('hide');
+}
+
+function getDateList(list_id) {
+	$.getJSON('/todolists/detail/' + list_id, function( data ){
+		cleanDateListModal();
+		appendDataToDateListModal(data);
 	});
+	$('#date_list_modal').modal('show');
+}
 
-});
+function cleanDateListModal() {
+	$('#date_list_modal').find('#list_time').text(null);
+	$('#date_list_modal').find('#list_items').html(null);
+}
 
+function appendDataToDateListModal(data) {
+	$('#date_list_modal').find('#list_time').text(data.created_at);
+	$.each(data.todo_items, function(index, item){
+		// Using VueJS or ReactJS is better
+		$('#date_list_modal').find('#list_items').append('<div class="item">' + item.name + '</div>');
+	});
+}

@@ -1,5 +1,5 @@
 class TodolistsController < ApplicationController
-  before_action :set_todolist, only: [:show, :edit, :update, :destroy]
+  before_action :set_todolist, only: [:show, :edit, :update, :destroy, :detail]
   before_action :set_default_todolist, only: [:index, :create_todoitem]
   before_action :get_completed_lists, only: [:index]
 
@@ -7,6 +7,9 @@ class TodolistsController < ApplicationController
   # GET /todolists.json
   def index
     @todoitems = @todolist.todoitems.order(:created_at)
+  end
+
+  def detail
   end
 
   # GET /todolists/1
