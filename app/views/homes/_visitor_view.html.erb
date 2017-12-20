@@ -19,6 +19,18 @@
 	  </div>
 	</div>
 	<div class="ui segment">
-		<div id='calendar'></div>
+		<% if params[:multiple_view].present? %>
+			<div id="multiple_view"
+					 class="ui three column grid"
+					 data-calendar-count="<%= params[:multiple_view] %>">
+					<% params[:multiple_view].to_i.times do |index| %>
+						<div class="column">
+							<div id='calendar-<%= index + 1 %>'></div>
+						</div>
+					<% end %>
+			</div>
+		<% else %>
+			<div id='calendar'></div>
+		<% end %>
 	</div>
 </div>

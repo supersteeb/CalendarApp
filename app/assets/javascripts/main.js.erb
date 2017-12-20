@@ -1,7 +1,11 @@
 jQuery(document).on('page:change turbolinks:load', function() {
 
 	initSemanticElement();
-	initCalendar();
+	if ($("#multiple_view").length) {
+		initMultipleCalendar();
+	} else {
+		initCalendar(null, 600);
+	}
 
 });
 
@@ -11,10 +15,10 @@ function initSemanticElement() {
 	});
 }
 
-function initCalendar() {
-	$('#calendar').fullCalendar({
+function initCalendar(id, height) {
+	$('#calendar' + id).fullCalendar({
   		timezone: 'UTC',
-  		height: 600,
+  		height: height,
   		header: {
 				left:   'title',
 				center: '',
@@ -27,6 +31,14 @@ function initCalendar() {
 
 	$events =  $("#main_container").data('events');
 	$('#calendar').fullCalendar('renderEvents', $events);
+}
+
+function initMultipleCalendar() {
+	n_o_calendar = parseInt($('#multiple_view').data('calendar-count'));
+	for (i=0;i<n_o_calendar;i++) {
+		id = i + 1
+		initCalendar('-' + id, 500);
+	}
 }
 
 function getDateList(list_id) {
@@ -45,7 +57,7 @@ function cleanDateListModal() {
 function appendDataToDateListModal(data) {
 	$('#date_list_modal').find('#list_time').text(data.created_at);
 	$.each(data.todo_items, function(index, item){
-		// Using VueJS or ReactJS is better
+		// Using VueJS or ReactJS is better because it can handle complicate data with clean code
 		$('#date_list_modal').find('#list_items').append('<div class="item">' + item.name + '</div>');
 	});
 }
