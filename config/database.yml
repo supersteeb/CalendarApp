@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: CalendarApp_production
-  username: CalendarApp
+  username: root
   password: <%= ENV['CALENDARAPP_DATABASE_PASSWORD'] %>
