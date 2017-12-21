@@ -1,11 +1,8 @@
 jQuery(document).on('page:change turbolinks:load', function() {
 
 	initSemanticElement();
-	if ($("#multiple_view").length) {
-		initMultipleCalendar();
-	} else {
-		initCalendar('', 600);
-	}
+	n_o_calendar = parseInt($("#calendar_view").data('n-o-calendar'));
+	settingUpCalendar(n_o_calendar);
 
 });
 
@@ -15,30 +12,50 @@ function initSemanticElement() {
 	});
 }
 
-function initCalendar(id, height) {
-	$('#calendar' + id).fullCalendar({
-  		timezone: 'UTC',
-  		height: height,
-  		header: {
-				left:   'title',
-				center: '',
-				right:  'prev,next'
-  		},
-  		eventClick: function(e){
-  			getDateList(e.name);
-  		}
-   });
-
-	$events =  $("#main_container").data('events');
-	$('#calendar').fullCalendar('renderEvents', $events);
+function settingUpCalendar(n_o_calendar) {
+	if (n_o_calendar > 1) {
+		for (i=1;i<=n_o_calendar;i++) {
+			calendar = $("#calendar-" + i)
+			initMultipleCalendar(calendar, calendar.data('month'));
+		}
+	} else {
+		initSingleCalendar("#calendar-1")
+	}
 }
 
-function initMultipleCalendar() {
-	n_o_calendar = parseInt($('#multiple_view').data('calendar-count'));
-	for (i=0;i<n_o_calendar;i++) {
-		id = i + 1
-		initCalendar('-' + id, 500);
-	}
+function initSingleCalendar(calendar_id) {
+	$(calendar_id).fullCalendar({
+		timezone: 'UTC',
+		height: 600,
+		header: {
+			left:   'title',
+			center: '',
+			right:  'prev,next'
+		},
+		eventClick: function(e){
+			getDateList(e.name);
+		}
+ 	});
+	$events =  $(calendar_id).data('events');
+	$(calendar_id).fullCalendar('renderEvents', $events);
+}
+
+function initMultipleCalendar(calendar, defaultDate) {
+	calendar.fullCalendar({
+		timezone: 'UTC',
+		aspectRatio: 1,
+		defaultDate: defaultDate,
+		header: {
+			left:   'title',
+			center: '',
+			right:  ''
+		},
+		eventClick: function(e){
+			getDateList(e.name);
+		}
+ 	});
+ 	// $events =  calendar.data('events');
+	// calendar.fullCalendar('renderEvents', $events);
 }
 
 function getDateList(list_id) {

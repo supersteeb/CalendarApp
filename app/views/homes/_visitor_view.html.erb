@@ -1,13 +1,13 @@
 <div class="sixteen wide column">
 	<div class="ui pointing menu">
-	  <a class="active item">
+	  <a href="/" class="active item">
 	    Single Month
 	  </a>
-	  <a class="item">
-	    3 Months
+	  <a href="?multiple_calendar=3" class="item">
+	    Last 3 Months
 	  </a>
-	  <a class="item">
-	    6 Months
+	  <a href="?multiple_calendar=6" class="item">
+	    Last 6 Months
 	  </a>
 	  <div class="right menu">
 	    <div class="item">
@@ -19,18 +19,17 @@
 	  </div>
 	</div>
 	<div class="ui segment">
-		<% if params[:multiple_view].present? %>
-			<div id="multiple_view"
-					 class="ui three column grid"
-					 data-calendar-count="<%= params[:multiple_view] %>">
-					<% params[:multiple_view].to_i.times do |index| %>
+			<div id="calendar_view"
+					 class="ui <%= @list_groups.count > 1 ? 'three' : 'one' %> column grid"
+					 data-n-o-calendar="<%= @list_groups.count %>">
+					<% @list_groups.each_with_index do |group, index| %>
 						<div class="column">
-							<div id='calendar-<%= index + 1 %>'></div>
+							<div id='calendar-<%= index + 1 %>'
+									 data-list="<%= group[1] %>"
+									 data-month="<%= group[0] %>">
+							</div>
 						</div>
 					<% end %>
 			</div>
-		<% else %>
-			<div id='calendar'></div>
-		<% end %>
 	</div>
 </div>
