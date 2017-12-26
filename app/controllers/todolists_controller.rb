@@ -1,7 +1,7 @@
 class TodolistsController < ApplicationController
   before_action :set_todolist, only: [:show, :edit, :update, :destroy, :detail]
   before_action :set_default_todolist, only: [:index, :create_todoitem]
-  before_action :get_completed_lists, only: [:index]
+  before_action :set_number_of_calendar, :get_completed_lists, only: [:index]
 
   # GET /todolists
   # GET /todolists.json
@@ -105,5 +105,9 @@ class TodolistsController < ApplicationController
           start: list.created_at
         }
       end
+    end
+
+    def set_number_of_calendar
+      @n_o_calendar = params[:multiple_calendar] || 1
     end
 end
