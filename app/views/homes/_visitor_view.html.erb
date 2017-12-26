@@ -1,12 +1,15 @@
 <div class="sixteen wide column">
 	<div class="ui pointing menu">
-	  <a href="/" class="active item">
+	  <a href="/"
+	  	 class="<%= 'active' if @n_o_calendar == 1  %> item">
 	    Single Month
 	  </a>
-	  <a href="?multiple_calendar=3" class="item">
+	  <a href="?multiple_calendar=3"
+	  	 class="<%= 'active' if @n_o_calendar == 3  %> item">
 	    Last 3 Months
 	  </a>
-	  <a href="?multiple_calendar=6" class="item">
+	  <a href="?multiple_calendar=6"
+	  	 class="<%= 'active' if @n_o_calendar == 6  %> item">
 	    Last 6 Months
 	  </a>
 	  <div class="right menu">
