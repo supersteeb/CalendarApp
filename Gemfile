@@ -66,6 +66,5 @@ gem 'devise'
 # Automate deploy progress
 gem 'mina'
 
-
 # Time travel in rails app
 gem 'timecop'
