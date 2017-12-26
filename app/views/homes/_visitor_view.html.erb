@@ -25,7 +25,7 @@
 					<% @list_groups.each_with_index do |group, index| %>
 						<div class="column">
 							<div id='calendar-<%= index + 1 %>'
-									 data-list="<%= group[1] %>"
+									 data-list="<%= JSON.generate process_event(group[1]) %>"
 									 data-month="<%= group[0] %>">
 							</div>
 						</div>

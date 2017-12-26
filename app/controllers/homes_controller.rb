@@ -7,8 +7,6 @@ class HomesController < ApplicationController
                 .group_by {|l| l.created_at.beginning_of_month.strftime('%Y-%m-%d')}
     month_start = Date.current.prev_month(@n_o_calendar - 1).month
     month_end = Date.current.month
-    puts "\n\n\n Month Start: #{month_start} \n\n\n"
-    puts "\n\n\n Month End: #{month_end} \n\n\n"
     @list_groups = Hash[(month_start..month_end).map { |month| [ "#{Date.current.year}-#{manipulate(month)}-01", 0 ] }].merge(h)
   	@todoitems = @todolist.todoitems.order(:created_at) if current_user
   end

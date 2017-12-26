@@ -36,7 +36,7 @@ function initSingleCalendar(calendar_id) {
 			getDateList(e.name);
 		}
  	});
-	$events =  $(calendar_id).data('events');
+	$events =  $(calendar_id).data('list');
 	$(calendar_id).fullCalendar('renderEvents', $events);
 }
 
@@ -54,8 +54,8 @@ function initMultipleCalendar(calendar, defaultDate) {
 			getDateList(e.name);
 		}
  	});
- 	// $events =  calendar.data('events');
-	// calendar.fullCalendar('renderEvents', $events);
+ 	$events =  calendar.data('list');
+	calendar.fullCalendar('renderEvents', $events);
 }
 
 function getDateList(list_id) {
