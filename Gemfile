@@ -62,3 +62,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Add authentication and authorization
 gem 'devise'
+
+# Automate deploy progress
+gem 'mina'
