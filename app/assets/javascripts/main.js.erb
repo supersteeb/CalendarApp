@@ -73,8 +73,18 @@ function cleanDateListModal() {
 
 function appendDataToDateListModal(data) {
 	$('#date_list_modal').find('#list_time').text(data.created_at);
+	$('.ui.accordion').accordion();
 	$.each(data.todo_items, function(index, item){
 		// Using VueJS or ReactJS is better because it can handle complicate data with clean code
-		$('#date_list_modal').find('#list_items').append('<div class="item">' + item.name + '</div>');
+		template = '<div class="title">'+
+							 '	<i class="dropdown icon"></i>'+
+							 '  '+ item.name +
+							 '</div>'+
+							 '<div class="content">'+
+							 '  <p class="transition hidden">'+
+							 '    '+ item.desc +
+							 '	</p>'+
+							 '</div>';
+		$('#date_list_modal').find('#list_items').append(template);
 	});
 }
