@@ -13,6 +13,10 @@ class Todolist < ApplicationRecord
 		end
 	end
 
+	def is_completed?
+		self.percent == 100
+	end
+
 	private
 
 	def today_have_this(item)

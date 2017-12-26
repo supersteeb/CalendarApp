@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
       json_data << {
         name: list.id,
         start: list.created_at
-      }
+      } if list.is_completed?
     end
-    json_data
+    return json_data
   rescue
   	return []
   end
