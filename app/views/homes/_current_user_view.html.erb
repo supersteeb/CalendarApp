@@ -1,4 +1,4 @@
-<div class="five wide column">
+<div class="four wide column">
 	<div class="ui segment" id="todolist">
 		<h3 class="ui header">
 			To Do List
@@ -7,16 +7,19 @@
 		<%= render 'todolists/editable_list' %>
 	</div>
 </div>
-<div class="eleven wide column">
+<div class="twelve wide column">
 	<div class="ui pointing menu">
-	  <a class="active item">
+	  <a href="/"
+	  	 class="<%= 'active' if @n_o_calendar == 1  %> item">
 	    Single Month
 	  </a>
-	  <a class="item">
-	    3 Months
+	  <a href="?multiple_calendar=3"
+	  	 class="<%= 'active' if @n_o_calendar == 3  %> item">
+	    Last 3 Months
 	  </a>
-	  <a class="item">
-	    6 Months
+	  <a href="?multiple_calendar=6"
+	  	 class="<%= 'active' if @n_o_calendar == 6  %> item">
+	    Last 6 Months
 	  </a>
 	  <div class="right menu">
 	    <div class="item">
@@ -28,7 +31,18 @@
 	  </div>
 	</div>
 	<div class="ui segment">
-		<div id='calendar'></div>
+		<div id="calendar_view"
+				 class="ui <%= @list_groups.count > 1 ? 'three' : 'one' %> column grid"
+				 data-n-o-calendar="<%= @list_groups.count %>">
+				<% @list_groups.each_with_index do |group, index| %>
+					<div class="column">
+						<div id='calendar-<%= index + 1 %>'
+								 data-list="<%= JSON.generate process_event(group[1]) %>"
+								 data-month="<%= group[0] %>">
+						</div>
+					</div>
+				<% end %>
+		</div>
 	</div>
 </div>
 

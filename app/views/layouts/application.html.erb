@@ -9,9 +9,7 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  	<div class="ui container">
+  	<div class="ui <%= 'fluid' if user_signed_in? %> container">
 	    <%= yield %>
 	</div>
   </body>
