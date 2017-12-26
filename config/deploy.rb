@@ -66,7 +66,7 @@ task :deploy do
   end
 
   # you can use `run :local` to run tasks on local machine before of after the deploy scripts
-  run(:local){ say 'Done!' }
+  # run(:local){ say 'Done!' }
 end
 
 # For help in making your deploy script, see the Mina documentation:
